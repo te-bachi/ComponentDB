@@ -1,0 +1,259 @@
+
+body {
+    background-color:  #cbfa83;
+    padding: 0;
+    margin: 0;
+    font-size: 62.5%;
+    line-height: 1.4em;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a,
+abbr, acronym, address, big, cite, code, del,
+dfn, em, font, img, ins, kbd, q, s, samp, small,
+strike, strong, sub, sup, tt, var, b, u, i, center,
+dl, dt, dd, ol, ul, li, fieldset, form, label,
+legend, input, select, table, caption, tbody,
+tfoot, thead, tr, th, td {
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+}
+
+
+/******************************************************************************
+ * Header
+ *****************************************************************************/
+
+#header {
+    background-image: -webkit-gradient(
+        linear,
+        right top,
+        right bottom,
+        color-stop(0.5, rgb(158,232,151)),
+        color-stop(1, rgb(28,130,24))
+    );
+    background-image: -moz-linear-gradient(
+        center top,
+        rgb(158,232,151) 50%,
+        rgb(28,130,24) 100%
+    );
+    height: 80px;
+}
+
+/******************************************************************************
+ * Logo
+ *****************************************************************************/
+
+#logo {
+    float: left;
+    width: 300px;
+    height: 100%;
+}
+
+#logo h1 {
+    margin-top: 20px;
+    margin-left: 30px;
+    color: #319e2c;
+    font-size: 2.5em;
+    text-shadow: rgba(0,0,0,0.5) -2px 0, rgba(0,0,0,0.3) 0 -2px, rgba(255,255,255,0.5) 0 2px, rgba(0,0,0,0.3) -2px -2px;
+}
+
+#logo h2 {
+    margin-top: -10px;
+    margin-left: 30px;
+    font-size: 1.0em;
+}
+
+/******************************************************************************
+ * Searchbar
+ *****************************************************************************/
+
+#searchbar {
+    padding-top: 20px;
+    margin-left: 300px;
+    height: 100%;
+}
+
+#searchinput {
+    margin-left: 20px;
+    width: 500px;
+}
+
+#searchbutton {
+    border: solid #1d6e19 thin;
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.27, rgb(66,186,50)),
+        color-stop(0.64, rgb(140,255,117)),
+        color-stop(0.82, rgb(105,204,59))
+    );
+    background-image: -moz-linear-gradient(
+        center bottom,
+        rgb(66,186,50) 27%,
+        rgb(140,255,117) 64%,
+        rgb(105,204,59) 82%
+    );
+}
+
+#searchbar div {
+    margin-top: 7px;
+    margin-left: 535px;
+}
+
+#searchbar div a:link, #searchbar div a:visited, #searchbar div a:focus,
+#searchbar div a:hover, #searchbar div a:active {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Erweiterte Einstellungen Fenster */
+#searchbar div div {
+    display: none;
+    position: absolute;
+    width: 120px;
+    height: 95px;
+    background-color: #8be37f;
+    margin-top: 0;
+    margin-left: 0;
+    padding: 8px;
+    border: thin black solid;
+}
+
+#searchbar div div div {
+    display: block;
+    border: none;
+    padding: 0;
+    margin: 0;
+    height: auto;
+    position: relative;
+}
+
+#searchbar div div div input {
+    width: 13px;
+    height: 13px;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+
+}
+
+#searchbar div div div label {
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+    vertical-align: middle;
+}
+
+#searchbar div:hover > div {
+    display: block;
+}
+
+#searchbar div a {
+
+}
+
+/******************************************************************************
+ * Menu
+ *****************************************************************************/
+
+#menu {
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(178,245,164)),
+        color-stop(1, rgb(120,217,71))
+    );
+    background-image: -moz-linear-gradient(
+        center bottom,
+        rgb(178,245,164) 0%,
+        rgb(120,217,71) 100%
+    );
+    height: 30px;
+    border: solid black;
+    border-width: 1px 0px 1px 0px;
+}
+
+/******************************************************************************
+ * Content
+ *****************************************************************************/
+
+#content {
+
+}
+
+/******************************************************************************
+ * Filter
+ *****************************************************************************/
+
+#filter {
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+/* Ein Filter */
+#filter table tr td div {
+    margin: 10px;
+    padding: 10px;
+    background-color: #a5e79c;
+    border: 1px black solid;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+#filter table tr td div h3 {
+    margin-top: 0;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+/* Block von Checkboxen */
+#filter table tr td div div {
+    padding: 5px 0px 5px 0px;
+    margin: 0;
+    height: 150px;
+    background-color: #b9e7b2;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#filter table tr td div div div {
+    border: none;
+    padding: 0px 30px 0px 0px;
+    width: auto;
+    height: auto;
+}
+
+#filter table tr td div div div input {
+    width: 13px;
+    height: 13px;
+    margin: 0px 5px 0px 5px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+}
+
+#filter table tr td div div div label {
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+    vertical-align: middle;
+}
+
+/******************************************************************************
+ * Result
+ *****************************************************************************/
+
+#result table {
+    margin: 10px;
+    width: 98%;
+    border: solid black thin;
+}
+
+#footer {
+    background-color: lime;
+    height: 20px;
+}

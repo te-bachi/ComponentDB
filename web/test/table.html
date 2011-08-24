@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+    <head>
+        <title>display</title>
+        <style type="text/css">
+            div.table {
+                display:table;
+                border-collapse:collapse;
+                width: 50%;
+            }
+
+            div.tr {
+                display:table-row;
+            }
+
+            div.td {
+                display:table-cell;
+                border:thin solid red;
+                padding:5px;
+            }
+
+            #container {
+                background-color: #556b2f;
+            }
+
+            #left1, #left2 {
+                float: left;
+                background-color: #dc143c;
+                border: thin black solid;
+            }
+
+            #right1, #right2 {
+                float: right;
+                background-color: #dc143c;
+                border: thin black solid;
+            }
+
+            #left1 {
+                width: 50%;
+            }
+
+            #left2, #right1, #right2 {
+                width: 100px;
+            }
+
+            #centercell {
+                height: 400px;
+                margin-left: 55%;
+                margin-right: 200px;
+                background-color: #b22222;
+            }
+
+
+        </style>
+    </head>
+    <body>
+
+        <div class="table">
+            <div class="tr">
+                <div class="td">ich</div>
+                <div class="td">bin</div>
+                <div class="td">eine</div>
+                <div style="width: 70%" class="td">Tabelle</div>
+            </div>
+        </div>
+
+
+        <div id="container">
+            <div id="left1">cell 1</div>
+            <div id="left2">cell 2</div>
+            <div id="right1">cell 3</div>
+            <div id="right2">cell 4</div>
+            <div id="centercell">center</div>
+        </div>
+    </body>
+</html>
