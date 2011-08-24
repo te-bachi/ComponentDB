@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="componentdb">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>net.bachi.componentdb.business.model.Attachment</class>
+        <class>net.bachi.componentdb.business.model.Attribute</class>
+        <class>net.bachi.componentdb.business.model.AttributeGroup</class>
+        <class>net.bachi.componentdb.business.model.AttributeValue</class>
+        <class>net.bachi.componentdb.business.model.Category</class>
+        <class>net.bachi.componentdb.business.model.Component</class>
+        <class>net.bachi.componentdb.business.model.Country</class>
+        <class>net.bachi.componentdb.business.model.Currency</class>
+        <class>net.bachi.componentdb.business.model.Distributor</class>
+        <class>net.bachi.componentdb.business.model.PartNumber</class>
+        <class>net.bachi.componentdb.business.model.Price</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:mysql://192.168.56.2/componentdb"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value="componentdb"/>
+            <property name="hibernate.connection.password" value="componentdb"/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="false"/>
+            <property name="hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>
