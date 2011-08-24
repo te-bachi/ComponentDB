@@ -26,11 +26,17 @@ public class Category implements Serializable {
     }
 
     public Category(String name) {
-        this(null, name);
+        this(null, null, name);
     }
 
+    
     public Category(Category parentCategory, String name) {
+        this(parentCategory, null, name);
+    }
+
+    public Category(Category parentCategory, AttributeGroup attributeGroup, String name) {
         this.name = name;
+        this.attributeGroup = attributeGroup;
         this.parentCategory = parentCategory;
     }
 
@@ -90,6 +96,18 @@ public class Category implements Serializable {
 
     public void setParentCategory(Category parentCategory) {
         this.parentCategory = parentCategory;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "group_id", referencedColumnName = "id")
+    private AttributeGroup attributeGroup;
+
+    public AttributeGroup getAttributeGroup() {
+        return attributeGroup;
+    }
+
+    public void setAttributeGroup(AttributeGroup attributeGroup) {
+        this.attributeGroup = attributeGroup;
     }
 
     @OneToMany(mappedBy = "parentCategory")

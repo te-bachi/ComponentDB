@@ -9,7 +9,6 @@ DROP TABLE component_has_choice;
 DROP TABLE attribute_choice;
 DROP TABLE attribute_value;
 DROP TABLE group_has_attribute;
-DROP TABLE component_has_group;
 DROP TABLE attribute;
 DROP TABLE attribute_group;
 DROP TABLE component_has_attachment;
@@ -20,6 +19,7 @@ DROP TABLE category;
 CREATE TABLE category (
   id                INT UNSIGNED        NOT NULL,
   parent_id         INT UNSIGNED        NULL,
+  group_id          INT UNSIGNED        NULL,
   name              VARCHAR(64)         NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(parent_id) REFERENCES category(id),
@@ -64,13 +64,6 @@ CREATE TABLE attribute (
   id                INT UNSIGNED        NOT NULL,
   name              VARCHAR(32)         NOT NULL,
   PRIMARY KEY(id)
-);
-
-CREATE TABLE component_has_group (
-  component_id      INT UNSIGNED        NOT NULL,
-  attribute_group_id INT UNSIGNED        NOT NULL,
-  FOREIGN KEY(component_id) REFERENCES component(id),
-  FOREIGN KEY(attribute_group_id) REFERENCES attribute_group(id)
 );
 
 CREATE TABLE group_has_attribute (

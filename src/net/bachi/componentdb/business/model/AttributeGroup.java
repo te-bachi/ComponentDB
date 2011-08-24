@@ -3,6 +3,7 @@ package net.bachi.componentdb.business.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -67,15 +68,15 @@ public class AttributeGroup implements Serializable {
         return result;
     }
 
-    @ManyToMany(mappedBy = "attributeGroups")
-    private Collection<Component> components;
+    @OneToMany(mappedBy = "attributeGroup")
+    private Collection<Category> categories;
 
-    public Collection<Component> getComponents() {
-        return components;
+    public Collection<Category> getCategories() {
+        return categories;
     }
 
-    public void setComponents(Collection<Component> components) {
-        this.components = components;
+    public void setCategories(Collection<Category> categories) {
+        this.categories = categories;
     }
 
     @ManyToMany
