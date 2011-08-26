@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.TableGenerator;
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Andreas Bachmann
@@ -120,13 +120,13 @@ public class Distributor implements Serializable {
     }
 
     @OneToMany(mappedBy = "distributor")
-    private Collection<PartNumber> partNumbers;
+    private List<PartNumber> partNumbers;
 
-    public Collection<PartNumber> getPartNumbers() {
+    public List<PartNumber> getPartNumbers() {
         return partNumbers;
     }
 
-    public void setPartNumbers(Collection<PartNumber> partNumbers) {
+    public void setPartNumbers(List<PartNumber> partNumbers) {
         this.partNumbers = partNumbers;
     }
 }

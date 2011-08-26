@@ -19,6 +19,17 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "price", catalog = "componentdb")
 public class Price implements Serializable {
+
+    public Price() {
+
+    }
+
+    public Price(PartNumber partNumber, short quantity, BigDecimal price) {
+        this.price = price;
+        this.partNumber = partNumber;
+        this.quantity = quantity;
+    }
+
     @Id
     @Column(name = "id")
     @TableGenerator(name="auto", table="sequence", pkColumnName="seq_name", valueColumnName="seq_value", pkColumnValue="SEQ_PRICE")

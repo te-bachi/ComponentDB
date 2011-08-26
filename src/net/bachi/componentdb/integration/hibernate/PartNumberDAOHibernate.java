@@ -9,7 +9,8 @@ import java.util.List;
  * @author Andreas Bachmann
  */
 public class PartNumberDAOHibernate extends GenericDAOHibernate<PartNumber, Integer> implements PartNumberDAO {
+    @SuppressWarnings("unchecked")
     public List<PartNumber> findAll() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return HibernateUtil.getManager().createQuery("select p from PartNumber p").getResultList();
     }
 }

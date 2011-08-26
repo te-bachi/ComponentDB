@@ -27,8 +27,8 @@ public abstract class DAOFactory {
     public abstract AttributeDAO getAttributeDAO();
     public abstract AttributeGroupDAO getAttributeGroupDAO();
     public abstract AttributeValueDAO getAttributeValueDAO();
-    public abstract AttributeChoiceDAO getAttributeChoiceDAO();
     public abstract CategoryDAO getCategoryDAO();
+    public abstract ManufacturerDAO getManufacturerDAO();
     public abstract ComponentDAO getComponentDAO();
     public abstract CountryDAO getCountryDAO();
     public abstract CurrencyDAO getCurrencyDAO();

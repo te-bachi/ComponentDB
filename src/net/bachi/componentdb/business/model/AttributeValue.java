@@ -1,16 +1,18 @@
 package net.bachi.componentdb.business.model;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Table;
-import javax.persistence.Column;
 import javax.persistence.Id;
-import javax.persistence.Basic;
-import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Andreas Bachmann
@@ -18,9 +20,19 @@ import java.io.Serializable;
 @Entity
 @Table(name = "attribute_value", catalog = "componentdb")
 public class AttributeValue implements Serializable {
+
+    public AttributeValue() {
+        //
+    }
+
+    public AttributeValue(Attribute attribute, String value) {
+        this.attribute = attribute;
+        this.value = value;
+    }
+
     @Id
     @Column(name = "id")
-    @TableGenerator(name="auto", table="sequence", pkColumnName="seq_name", valueColumnName="seq_value", pkColumnValue="SEQ_ATTRIBUTE_VALUE")
+    @TableGenerator(name="auto", table="sequence", pkColumnName="seq_name", valueColumnName="seq_value", pkColumnValue="SEQ_ATTRIBUTE_CHOICE")
     @GeneratedValue(strategy= GenerationType.TABLE, generator="auto")
     private int id;
 
@@ -76,15 +88,14 @@ public class AttributeValue implements Serializable {
         this.attribute = attribute;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "component_id", referencedColumnName = "id", nullable = false)
-    private Component component;
+    @ManyToMany(mappedBy = "attributeValues")
+    private List<Component> components;
 
-    public Component getComponent() {
-        return component;
+    public List<Component> getComponents() {
+        return components;
     }
 
-    public void setComponent(Component component) {
-        this.component = component;
+    public void setComponent(List<Component> components) {
+        this.components = components;
     }
 }

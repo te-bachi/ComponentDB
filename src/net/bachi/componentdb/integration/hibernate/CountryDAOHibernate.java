@@ -9,7 +9,8 @@ import java.util.List;
  * @author Andreas Bachmann
  */
 public class CountryDAOHibernate extends GenericDAOHibernate<Country, Integer> implements CountryDAO {
+    @SuppressWarnings("unchecked")
     public List<Country> findAll() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return HibernateUtil.getManager().createQuery("select c from Country c").getResultList();
     }
 }

@@ -10,29 +10,25 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
  * @author Andreas Bachmann
  */
 @Entity
-@Table(name = "currency", catalog = "componentdb")
-public class Currency implements Serializable {
-
-    public Currency() {
+@Table(name = "manufacturer", catalog = "componentdb")
+public class Manufacturer implements Serializable {
+    public Manufacturer() {
         //
     }
 
-    public Currency(String name, BigDecimal rate) {
+    public Manufacturer(String name) {
         this.name = name;
-        this.rate = rate;
     }
-
 
     @Id
     @Column(name = "id")
-    @TableGenerator(name="auto", table="sequence", pkColumnName="seq_name", valueColumnName="seq_value", pkColumnValue="SEQ_CURRENCY")
+    @TableGenerator(name="auto", table="sequence", pkColumnName="seq_name", valueColumnName="seq_value", pkColumnValue="SEQ_DISTRIBUTOR")
     @GeneratedValue(strategy= GenerationType.TABLE, generator="auto")
     private int id;
 
@@ -56,28 +52,15 @@ public class Currency implements Serializable {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "rate")
-    private BigDecimal rate;
-
-    public BigDecimal getRate() {
-        return rate;
-    }
-
-    public void setRate(BigDecimal rate) {
-        this.rate = rate;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Currency that = (Currency) o;
+        Manufacturer that = (Manufacturer) o;
 
         if (id != that.id) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (rate != null ? !rate.equals(that.rate) : that.rate != null) return false;
 
         return true;
     }
@@ -86,18 +69,17 @@ public class Currency implements Serializable {
     public int hashCode() {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (rate != null ? rate.hashCode() : 0);
         return result;
     }
 
-    @OneToMany(mappedBy = "currency")
-    private List<Country> countries;
+    @OneToMany(mappedBy = "manufacturer")
+    private List<Component> components;
 
-    public List<Country> getCountries() {
-        return countries;
+    public List<Component> getComponents() {
+        return components;
     }
 
-    public void setCountries(List<Country> countries) {
-        this.countries = countries;
+    public void setComponents(List<Component> components) {
+        this.components = components;
     }
 }

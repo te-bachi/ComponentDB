@@ -9,7 +9,8 @@ import java.util.List;
  * @author Andreas Bachmann
  */
 public class CurrencyDAOHibernate extends GenericDAOHibernate<Currency, Integer> implements CurrencyDAO {
+    @SuppressWarnings("unchecked")
     public List<Currency> findAll() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return HibernateUtil.getManager().createQuery("select c from Currency c").getResultList();
     }
 }

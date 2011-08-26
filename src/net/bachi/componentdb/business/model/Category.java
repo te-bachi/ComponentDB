@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Andreas Bachmann
@@ -111,24 +111,24 @@ public class Category implements Serializable {
     }
 
     @OneToMany(mappedBy = "parentCategory")
-    private Collection<Category> childCategories;
+    private List<Category> childCategories;
 
-    public Collection<Category> getChildCategories() {
+    public List<Category> getChildCategories() {
         return childCategories;
     }
 
-    public void setChildCategories(Collection<Category> childCategories) {
+    public void setChildCategories(List<Category> childCategories) {
         this.childCategories = childCategories;
     }
 
     @OneToMany(mappedBy = "category")
-    private Collection<Component> components;
+    private List<Component> components;
 
-    public Collection<Component> getComponents() {
+    public List<Component> getComponents() {
         return components;
     }
 
-    public void setComponents(Collection<Component> components) {
+    public void setComponents(List<Component> components) {
         this.components = components;
     }
 }

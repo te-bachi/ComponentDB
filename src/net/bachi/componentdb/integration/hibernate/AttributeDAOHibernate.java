@@ -9,7 +9,8 @@ import java.util.List;
  * @author Andreas Bachmann
  */
 public class AttributeDAOHibernate extends GenericDAOHibernate<Attribute, Integer> implements AttributeDAO {
+    @SuppressWarnings("unchecked")
     public List<Attribute> findAll() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return HibernateUtil.getManager().createQuery("select a from Attribute a").getResultList();
     }
 }

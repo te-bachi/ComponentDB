@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.ManyToMany;
 import javax.persistence.TableGenerator;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Andreas Bachmann
@@ -75,24 +75,24 @@ public class Attribute implements Serializable {
     }
 
     @OneToMany(mappedBy = "attribute")
-    private Collection<AttributeValue> attributeValues;
+    private List<AttributeValue> attributeValues;
 
-    public Collection<AttributeValue> getAttributeValues() {
+    public List<AttributeValue> getAttributeValues() {
         return attributeValues;
     }
 
-    public void setAttributeValues(Collection<AttributeValue> attributeValues) {
+    public void setAttributeValues(List<AttributeValue> attributeValues) {
         this.attributeValues = attributeValues;
     }
 
     @ManyToMany(mappedBy = "attributes")
-    private Collection<AttributeGroup> attributeGroups;
+    private List<AttributeGroup> attributeGroups;
 
-    public Collection<AttributeGroup> getAttributeGroups() {
+    public List<AttributeGroup> getAttributeGroups() {
         return attributeGroups;
     }
 
-    public void setAttributeGroups(Collection<AttributeGroup> attributeGroups) {
+    public void setAttributeGroups(List<AttributeGroup> attributeGroups) {
         this.attributeGroups = attributeGroups;
     }
 }

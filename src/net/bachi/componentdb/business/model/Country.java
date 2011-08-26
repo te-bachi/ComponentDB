@@ -14,7 +14,7 @@ import javax.persistence.TableGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Andreas Bachmann
@@ -121,13 +121,13 @@ public class Country implements Serializable {
     }
 
     @OneToMany(mappedBy = "country")
-    private Collection<Distributor> distributors;
+    private List<Distributor> distributors;
 
-    public Collection<Distributor> getDistributors() {
+    public List<Distributor> getDistributors() {
         return distributors;
     }
 
-    public void setDistributors(Collection<Distributor> distributors) {
+    public void setDistributors(List<Distributor> distributors) {
         this.distributors = distributors;
     }
 }

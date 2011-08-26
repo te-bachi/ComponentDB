@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.TableGenerator;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Andreas Bachmann
@@ -20,6 +20,22 @@ import java.util.Collection;
 @Entity
 @Table(name = "part_number", catalog = "componentdb")
 public class PartNumber implements Serializable {
+
+    public PartNumber() {
+
+    }
+
+    public PartNumber(String partNumber, Component component, Distributor distributor) {
+        this(partNumber, component, distributor, null);
+    }
+
+    public PartNumber(String partNumber, Component component, Distributor distributor, List<Price> prices) {
+        this.partNumber = partNumber;
+        this.component = component;
+        this.distributor = distributor;
+        this.prices = prices;
+    }
+
     @Id
     @Column(name = "id")
     @TableGenerator(name="auto", table="sequence", pkColumnName="seq_name", valueColumnName="seq_value", pkColumnValue="SEQ_PART_NUMBER")
@@ -91,13 +107,13 @@ public class PartNumber implements Serializable {
     }
 
     @OneToMany(mappedBy = "partNumber")
-    private Collection<Price> prices;
+    private List<Price> prices;
 
-    public Collection<Price> getPrices() {
+    public List<Price> getPrices() {
         return prices;
     }
 
-    public void setPrices(Collection<Price> prices) {
+    public void setPrices(List<Price> prices) {
         this.prices = prices;
     }
 }

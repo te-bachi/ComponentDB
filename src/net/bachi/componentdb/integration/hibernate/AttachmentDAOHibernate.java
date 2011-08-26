@@ -9,7 +9,8 @@ import java.util.List;
  * @author Andreas Bachmann
  */
 public class AttachmentDAOHibernate extends GenericDAOHibernate<Attachment, Integer> implements AttachmentDAO {
+    @SuppressWarnings("unchecked")
     public List<Attachment> findAll() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return HibernateUtil.getManager().createQuery("select a from Attachment a").getResultList();
     }
 }

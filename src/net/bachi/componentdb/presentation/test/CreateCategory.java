@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author Andreas Bachmann
  */
-public class                                                                                                                                                                                                                                   CreateCategory {
+public class CreateCategory {
     public static void main(String[] args) {
         CategoryDAO categoryDAO = DAOFactory.getInstance().getCategoryDAO();
 

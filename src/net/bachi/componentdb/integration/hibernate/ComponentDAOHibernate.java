@@ -9,7 +9,18 @@ import java.util.List;
  * @author Andreas Bachmann
  */
 public class ComponentDAOHibernate extends GenericDAOHibernate<Component, Integer> implements ComponentDAO {
+    @SuppressWarnings("unchecked")
     public List<Component> findAll() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return HibernateUtil.getManager().createQuery("select c from Component c").getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Component> findExact(String searchString) {
+        return HibernateUtil.getManager().createQuery("select c from Component c").getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Component> findWildcard(String searchString) {
+        return HibernateUtil.getManager().createQuery("select c from Component c").getResultList();
     }
 }

@@ -1,16 +1,16 @@
 package net.bachi.componentdb.integration.hibernate;
 
 import net.bachi.componentdb.integration.AttachmentDAO;
-import net.bachi.componentdb.integration.AttributeChoiceDAO;
+import net.bachi.componentdb.integration.AttributeValueDAO;
 import net.bachi.componentdb.integration.AttributeDAO;
 import net.bachi.componentdb.integration.AttributeGroupDAO;
-import net.bachi.componentdb.integration.AttributeValueDAO;
 import net.bachi.componentdb.integration.CategoryDAO;
 import net.bachi.componentdb.integration.ComponentDAO;
 import net.bachi.componentdb.integration.CountryDAO;
 import net.bachi.componentdb.integration.CurrencyDAO;
 import net.bachi.componentdb.integration.DAOFactory;
 import net.bachi.componentdb.integration.DistributorDAO;
+import net.bachi.componentdb.integration.ManufacturerDAO;
 import net.bachi.componentdb.integration.PartNumberDAO;
 import net.bachi.componentdb.integration.PriceDAO;
 
@@ -48,13 +48,13 @@ public class HibernateDAOFactory extends DAOFactory {
     }
 
     @Override
-    public AttributeChoiceDAO getAttributeChoiceDAO() {
-        return (AttributeChoiceDAO) instantiateDAO(AttributeChoiceDAOHibernate.class);
+    public CategoryDAO getCategoryDAO() {
+        return (CategoryDAO) instantiateDAO(CategoryDAOHibernate.class);
     }
 
     @Override
-    public CategoryDAO getCategoryDAO() {
-        return (CategoryDAO) instantiateDAO(CategoryDAOHibernate.class);
+    public ManufacturerDAO getManufacturerDAO() {
+        return (ManufacturerDAO) instantiateDAO(ManufacturerDAOHibernate.class);
     }
 
     @Override

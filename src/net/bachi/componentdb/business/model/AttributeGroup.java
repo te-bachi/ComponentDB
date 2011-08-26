@@ -13,7 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.TableGenerator;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
+import java.util.List;
 
 /**
  * @author Andreas Bachmann
@@ -21,6 +22,19 @@ import java.util.Collection;
 @Entity
 @Table(name = "attribute_group", catalog = "componentdb")
 public class AttributeGroup implements Serializable {
+
+    public AttributeGroup() {
+        //
+    }
+
+    public AttributeGroup(String name) {
+        this.name = name;
+    }
+
+    public AttributeGroup(String name, List<Attribute> attributes) {
+        this.name = name;
+        this.attributes = attributes;
+    }
 
     @Id
     @Column(name = "id")
@@ -69,13 +83,13 @@ public class AttributeGroup implements Serializable {
     }
 
     @OneToMany(mappedBy = "attributeGroup")
-    private Collection<Category> categories;
+    private List<Category> categories;
 
-    public Collection<Category> getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(Collection<Category> categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
 
@@ -85,13 +99,13 @@ public class AttributeGroup implements Serializable {
             joinColumns = { @JoinColumn(name = "attribute_group_id") },
             inverseJoinColumns = { @JoinColumn(name = "attribute_id") }
     )
-    private Collection<Attribute> attributes;
+    private List<Attribute> attributes;
 
-    public Collection<Attribute> getAttributes() {
+    public List<Attribute> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Collection<Attribute> attributes) {
+    public void setAttributes(List<Attribute> attributes) {
         this.attributes = attributes;
     }
 }

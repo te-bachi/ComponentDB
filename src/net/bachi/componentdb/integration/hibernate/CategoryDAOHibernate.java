@@ -13,4 +13,8 @@ public class CategoryDAOHibernate extends GenericDAOHibernate<Category, Integer>
     public List<Category> findAll() {
         return HibernateUtil.getManager().createQuery("select c from Category c").getResultList();
     }
+
+    public Category findByName(String name) {
+        return (Category) HibernateUtil.getManager().createQuery("select c from Category c WHERE c.name = :name").setParameter("name", name).getSingleResult();
+    }
 }

@@ -9,7 +9,8 @@ import java.util.List;
  * @author Andreas Bachmann
  */
 public class PriceDAOHibernate extends GenericDAOHibernate<Price, Integer> implements PriceDAO {
+    @SuppressWarnings("unchecked")
     public List<Price> findAll() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return HibernateUtil.getManager().createQuery("select p from Price p").getResultList();
     }
 }

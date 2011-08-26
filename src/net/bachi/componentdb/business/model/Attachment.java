@@ -13,7 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.TableGenerator;
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Andreas Bachmann
@@ -111,13 +111,13 @@ public class Attachment implements Serializable {
     }
 
     @ManyToMany(mappedBy = "attachments")
-    private Collection<Component> components;
+    private List<Component> components;
 
-    public Collection<Component> getComponents() {
+    public List<Component> getComponents() {
         return components;
     }
 
-    public void setComponents(Collection<Component> components) {
+    public void setComponents(List<Component> components) {
         this.components = components;
     }
 }

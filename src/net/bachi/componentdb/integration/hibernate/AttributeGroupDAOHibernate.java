@@ -9,7 +9,12 @@ import java.util.List;
  * @author Andreas Bachmann
  */
 public class AttributeGroupDAOHibernate extends GenericDAOHibernate<AttributeGroup, Integer> implements AttributeGroupDAO {
+    @SuppressWarnings("unchecked")
     public List<AttributeGroup> findAll() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return HibernateUtil.getManager().createQuery("select a from AttributeGroup a").getResultList();
+    }
+
+    public AttributeGroup findByName(String name) {
+        return (AttributeGroup) HibernateUtil.getManager().createQuery("select a from AttributeGroup a WHERE a.name = :name").setParameter("name", name).getSingleResult();
     }
 }

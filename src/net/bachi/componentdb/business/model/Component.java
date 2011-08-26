@@ -14,7 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.TableGenerator;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Andreas Bachmann
@@ -22,6 +22,26 @@ import java.util.Collection;
 @Table(name = "component", catalog = "componentdb")
 @Entity
 public class Component implements Serializable {
+
+    public Component() {
+
+    }
+
+    public Component(Category category, Manufacturer manufacturer, String name, String description, String place, short quantity) {
+        this(category, manufacturer, name, description, place, quantity, null, null, null);
+    }
+
+    public Component(Category category, Manufacturer manufacturer, String name, String description, String place, short quantity, List<AttributeValue> attributeValues, List<Attachment> attachments, List<PartNumber> partNumbers) {
+        this.category = category;
+        this.manufacturer = manufacturer;
+        this.name = name;
+        this.description = description;
+        this.place = place;
+        this.quantity = quantity;
+        this.attributeValues = attributeValues;
+        this.attachments = attachments;
+        this.partNumbers = partNumbers;
+    }
 
     @Id
     @Column(name = "id")
@@ -47,18 +67,6 @@ public class Component implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Basic
-    @Column(name = "manufacturer")
-    private String manufacturer;
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
     }
 
     @Basic
@@ -106,7 +114,6 @@ public class Component implements Serializable {
 
         if (id != that.id) return false;
         if (quantity != that.quantity) return false;
-        if (manufacturer != null ? !manufacturer.equals(that.manufacturer) : that.manufacturer != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (place != null ? !place.equals(that.place) : that.place != null) return false;
 
@@ -117,37 +124,9 @@ public class Component implements Serializable {
     public int hashCode() {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (manufacturer != null ? manufacturer.hashCode() : 0);
         result = 31 * result + (place != null ? place.hashCode() : 0);
         result = 31 * result + (int) quantity;
         return result;
-    }
-
-    @ManyToMany
-    @JoinTable(
-            name = "component_has_choice",
-            joinColumns = { @JoinColumn(name = "component_id") },
-            inverseJoinColumns = { @JoinColumn(name = "attribute_choice_id") }
-    )
-    private Collection<AttributeChoice> attributeChoices;
-
-    public Collection<AttributeChoice> getAttributeChoices() {
-        return attributeChoices;
-    }
-
-    public void setAttributeChoices(Collection<AttributeChoice> attributeChoices) {
-        this.attributeChoices = attributeChoices;
-    }
-
-    @OneToMany(mappedBy = "component")
-    private Collection<AttributeValue> attributeValues;
-
-    public Collection<AttributeValue> getAttributeValues() {
-        return attributeValues;
-    }
-
-    public void setAttributeValues(Collection<AttributeValue> attributeValues) {
-        this.attributeValues = attributeValues;
     }
 
     @ManyToOne
@@ -162,46 +141,58 @@ public class Component implements Serializable {
         this.category = category;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "manufacturer_id", referencedColumnName = "id", nullable = false)
+    private Manufacturer manufacturer;
+
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    @ManyToMany
+    @JoinTable(
+            name = "component_has_value",
+            joinColumns = { @JoinColumn(name = "component_id") },
+            inverseJoinColumns = { @JoinColumn(name = "attribute_value_id") }
+    )
+    private List<AttributeValue> attributeValues;
+
+    public List<AttributeValue> getAttributeValues() {
+        return this.attributeValues;
+    }
+
+    public void setAttributeValues(List<AttributeValue> attributeValues) {
+        this.attributeValues = attributeValues;
+    }
+
     @ManyToMany
     @JoinTable(
             name = "component_has_attachment",
             joinColumns = { @JoinColumn(name = "component_id") },
             inverseJoinColumns = { @JoinColumn(name = "attachment_id") }
     )
-    private Collection<Attachment> attachments;
+    private List<Attachment> attachments;
 
-    public Collection<Attachment> getAttachments() {
+    public List<Attachment> getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(Collection<Attachment> attachments) {
+    public void setAttachments(List<Attachment> attachments) {
         this.attachments = attachments;
     }
 
-    @ManyToMany
-    @JoinTable(
-            name = "component_has_group",
-            joinColumns = { @JoinColumn(name = "component_id") },
-            inverseJoinColumns = { @JoinColumn(name = "attribute_group_id") }
-    )
-    private Collection<AttributeGroup> attributeGroups;
-
-    public Collection<AttributeGroup> getAttributeGroups() {
-        return attributeGroups;
-    }
-
-    public void setAttributeGroups(Collection<AttributeGroup> attributeGroups) {
-        this.attributeGroups = attributeGroups;
-    }
-
     @OneToMany(mappedBy = "component")
-    private Collection<PartNumber> partNumbers;
+    private List<PartNumber> partNumbers;
 
-    public Collection<PartNumber> getPartNumbers() {
+    public List<PartNumber> getPartNumbers() {
         return partNumbers;
     }
 
-    public void setPartNumbers(Collection<PartNumber> partNumbers) {
+    public void setPartNumbers(List<PartNumber> partNumbers) {
         this.partNumbers = partNumbers;
     }
 }

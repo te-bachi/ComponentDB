@@ -5,8 +5,7 @@ DROP TABLE part_number;
 DROP TABLE distributor;
 DROP TABLE country;
 DROP TABLE currency;
-DROP TABLE component_has_choice;
-DROP TABLE attribute_choice;
+DROP TABLE component_has_value;
 DROP TABLE attribute_value;
 DROP TABLE group_has_attribute;
 DROP TABLE attribute;
@@ -14,6 +13,7 @@ DROP TABLE attribute_group;
 DROP TABLE component_has_attachment;
 DROP TABLE attachment;
 DROP TABLE component;
+DROP TABLE manufacturer;
 DROP TABLE category;
 
 CREATE TABLE category (
@@ -23,19 +23,27 @@ CREATE TABLE category (
   name              VARCHAR(64)         NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(parent_id) REFERENCES category(id),
-  UNIQUE(name)
+  UNIQUE KEY(name)
+);
+
+CREATE TABLE manufacturer (
+  id                INT UNSIGNED        NOT NULL,
+  name              VARCHAR(32)         NOT NULL,
+  PRIMARY KEY(id),
+  UNIQUE KEY(name)
 );
 
 CREATE TABLE component (
   id                INT UNSIGNED        NOT NULL,
   category_id       INT UNSIGNED        NOT NULL,
+  manufacturer_id   INT UNSIGNED        NOT NULL,
   name              VARCHAR(32)         NOT NULL,
-  manufacturer      VARCHAR(32)         NULL,
-  description       VARCHAR(255)        NULL,
+  description       VARCHAR(255)        NOT NULL,
   place             VARCHAR(32)         NULL,
   quantity          SMALLINT UNSIGNED   NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(category_id) REFERENCES category(id)
+  FOREIGN KEY(category_id) REFERENCES category(id),
+  FOREIGN KEY(manufacturer_id) REFERENCES manufacturer(id)
 );
 
 CREATE TABLE attachment (
@@ -57,7 +65,8 @@ CREATE TABLE component_has_attachment (
 CREATE TABLE attribute_group (
   id                INT UNSIGNED        NOT NULL,
   name              VARCHAR(32)         NOT NULL,
-  PRIMARY KEY(id)
+  PRIMARY KEY(id),
+  UNIQUE KEY(name)
 );
 
 CREATE TABLE attribute (
@@ -76,26 +85,16 @@ CREATE TABLE group_has_attribute (
 CREATE TABLE attribute_value (
   id                INT UNSIGNED        NOT NULL,
   attribute_id      INT UNSIGNED        NOT NULL,
-  component_id      INT UNSIGNED        NOT NULL,
   value             VARCHAR(32)         NOT NULL,
-  PRIMARY KEY(id),
-  FOREIGN KEY(attribute_id) REFERENCES attribute(id),
-  FOREIGN KEY(component_id) REFERENCES component(id)
-);
-
-CREATE TABLE attribute_choice (
-  id                INT UNSIGNED        NOT NULL,
-  attribute_id      INT UNSIGNED        NOT NULL,
-  choice            VARCHAR(32)         NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(attribute_id) REFERENCES attribute(id)
 );
 
-CREATE TABLE component_has_choice (
+CREATE TABLE component_has_value (
   component_id      INT UNSIGNED        NOT NULL,
-  attribute_choice_id INT UNSIGNED        NOT NULL,
+  attribute_value_id INT UNSIGNED        NOT NULL,
   FOREIGN KEY(component_id) REFERENCES component(id),
-  FOREIGN KEY(attribute_choice_id) REFERENCES attribute_choice(id)
+  FOREIGN KEY(attribute_value_id) REFERENCES attribute_value(id)
 );
 
 CREATE TABLE currency (
