@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <include file="struts-default.xml"/>
+
+    <package name="category" extends="struts-default" namespace="/category">
+
+        <default-interceptor-ref name="defaultStack"/>
+
+        <action name="add" >
+            <result>/category/add.jsp</result>
+        </action>
+
+        <action name="save" class="net.bachi.componentdb.presentation.category.CategorySaveAction">
+            <result>/category/view.jsp</result>
+            <interceptor-ref name="basicStack"/>
+        </action>
+
+        <action name="list" class="net.bachi.componentdb.presentation.action.CategoryListAction">
+            <result name="success">/category/list.jsp</result>
+            <result name="login">/category/list.jsp</result>
+            <interceptor-ref name="basicStack"/>
+        </action>
+
+        <action name="view" class="net.bachi.componentdb.presentation.category.CategoryViewAction">
+            <result>/category/view.jsp</result>
+            <interceptor-ref name="basicStack"/>
+        </action>
+
+    </package>
+</struts>
