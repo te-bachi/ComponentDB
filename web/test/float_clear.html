@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html >
+<head>
+    <title>erstes beispiel</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+        .without, .with, .clearfix {
+            background-color: red;
+            height: auto;
+        }
+
+        .without p, .with p, .clearfix p {
+            background-color: yellow;
+        }
+
+        .without div.floating, .with div.floating, .clearfix div.floating {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+
+        .clear {
+            clear: left;
+        }
+
+        .clearfix:after {
+            content: ".";
+            display: block;
+            clear: both;
+            font-size: 0;
+            height: 0;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<div class="without">
+    <p>Parent</p>
+    <div class="floating">Cild (float: left)</div>
+    <div class="floating">Cild (float: left)</div>
+    <div class="floating">Cild (float: left)</div>
+    <div class="floating">Cild (float: left)</div>
+    <div class="floating">Cild (float: left)</div>
+</div>
+
+<div class="clear"></div>
+
+<div class="with">
+    <p>Parent</p>
+    <div class="floating">Cild (float: left)</div>
+    <div class="floating">Cild (float: left)</div>
+    <div class="floating">Cild (float: left)</div>
+    <div class="floating">Cild (float: left)</div>
+    <div class="floating">Cild (float: left)</div>
+    <div class="clear"></div>
+</div>
+
+<div class="clear"></div>
+
+<div class="clearfix">
+    <p>Parent</p>
+    <div class="floating">Cild (float: left)</div>
+    <div class="floating">Cild (float: left)</div>
+    <div class="floating">Cild (float: left)</div>
+    <div class="floating">Cild (float: left)</div>
+    <div class="floating">Cild (float: left)</div>
+</div>
+
+</body>
+</html>
+

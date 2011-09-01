@@ -35,7 +35,7 @@ public abstract class GenericDAOHibernate<T extends Serializable, ID  extends Nu
             if (transaction.isActive()) {
                 transaction.rollback();
             }
-            throw new PersistenceException("Could not save from db.", e);
+            throw new PersistenceException("Could not saveSession from db.", e);
         }
     }
 
@@ -63,7 +63,7 @@ public abstract class GenericDAOHibernate<T extends Serializable, ID  extends Nu
             if (transaction.isActive()) {
                 transaction.rollback();
             }
-            throw new PersistenceException("Could not remove from db.", e);
+            throw new PersistenceException("Could not removeSession from db.", e);
         }
     }
 

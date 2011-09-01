@@ -142,6 +142,10 @@ public class CreateComponent {
         component.setAttributeValues(randValues);
     }
 
+    private void createTestComponents() {
+
+    }
+
     private void createKondensator() {
         //Component component = new Component();
     }

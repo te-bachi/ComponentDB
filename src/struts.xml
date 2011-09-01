@@ -7,28 +7,34 @@
 <struts>
     <include file="struts-default.xml"/>
 
-    <package name="category" extends="struts-default" namespace="/category">
+    <package name="search" extends="struts-default" namespace="/search">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
 
         <default-interceptor-ref name="defaultStack"/>
 
-        <action name="add" >
-            <result>/category/add.jsp</result>
+        <action name="search" class="net.bachi.componentdb.presentation.SearchAction" method="search">
+            <interceptor-ref name="basicStack"/>
+            <result type="redirectAction">
+                <param name="actionName">category</param>
+                <param name="namespace">/search</param>
+            </result>
         </action>
 
-        <action name="save" class="net.bachi.componentdb.presentation.category.CategorySaveAction">
-            <result>/category/view.jsp</result>
+        <action name="category" class="net.bachi.componentdb.presentation.SearchAction" method="category">
             <interceptor-ref name="basicStack"/>
+            <result name="success" type="tiles">tiles.layout.search.category</result>
         </action>
 
-        <action name="list" class="net.bachi.componentdb.presentation.action.CategoryListAction">
-            <result name="success">/category/list.jsp</result>
-            <result name="login">/category/list.jsp</result>
+        <action name="filter" class="net.bachi.componentdb.presentation.SearchAction" method="filter">
             <interceptor-ref name="basicStack"/>
+            <result name="success" type="tiles">tiles.layout.search.filter</result>
         </action>
 
-        <action name="view" class="net.bachi.componentdb.presentation.category.CategoryViewAction">
-            <result>/category/view.jsp</result>
+        <action name="result" class="net.bachi.componentdb.presentation.SearchAction" method="result">
             <interceptor-ref name="basicStack"/>
+            <result name="success" type="tiles">tiles.layout.search.result</result>
         </action>
 
     </package>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+    <!-- ========== Root Layout =========================================== -->
+    <definition name="tiles.layout.root" template="/layout.jsp">
+        <put-attribute name="title"         value="ComponentDB" />
+        <put-attribute name="header"        value="/header.jsp" />
+        <put-attribute name="menu"          value="/menu.jsp" />
+        <put-attribute name="breadcrumbs"   value="/breadcrumbs.jsp" />
+        <put-attribute name="category"      value="" />
+        <put-attribute name="filter"        value="" />
+        <put-attribute name="result"        value="" />
+        <put-attribute name="component"     value="" />
+        <put-attribute name="footer"        value="/footer.jsp" />
+    </definition>
+    
+    <!-- ========== Home Layout =========================================== -->
+    <definition name="tiles.layout.home" extends="tiles.layout.root">
+        <put-attribute name="category"      value="/category.jsp" />
+    </definition>
+
+    <!-- ========== Component Layout ====================================== -->
+    <definition name="tiles.layout.component" extends="tiles.layout.root">
+        <put-attribute name="component"     value="/component.jsp" />
+    </definition>
+
+    <!-- ========== Category Layouts ====================================== -->
+
+    <!-- .......... Category -> Branch Layout ............................. -->
+    <definition name="tiles.layout.category.branch" extends="tiles.layout.root">
+        <put-attribute name="category"      value="/category.jsp" />
+    </definition>
+
+    <!-- .......... Category -> Leaf Layout ............................... -->
+    <definition name="tiles.layout.category.leaf" extends="tiles.layout.root">
+        <put-attribute name="filter"        value="/filter.jsp" />
+        <put-attribute name="result"        value="/result.jsp" />
+    </definition>
+
+    <!-- ========== Search Layouts ======================================== -->
+    
+    <!-- .......... Search -> Category Layout ............................. -->
+    <definition name="tiles.layout.search.category" extends="tiles.layout.root">
+        <put-attribute name="category"      value="/category.jsp" />
+    </definition>
+
+    <!-- .......... Search -> Filter Layout ............................... -->
+    <definition name="tiles.layout.search.filter" extends="tiles.layout.root">
+        <put-attribute name="filter"        value="/filter.jsp" />
+    </definition>
+
+    <!-- .......... Search -> Result Layout ............................... -->
+    <definition name="tiles.layout.search.result" extends="tiles.layout.root">
+        <put-attribute name="filter"        value="/filter.jsp" />
+        <put-attribute name="result"        value="/result.jsp" />
+    </definition>
+
+    <!-- ========== Admin Layout ========================================== -->
+    
+</tiles-definitions>

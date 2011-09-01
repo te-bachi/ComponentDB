@@ -12,6 +12,7 @@
         <class>net.bachi.componentdb.business.model.Country</class>
         <class>net.bachi.componentdb.business.model.Currency</class>
         <class>net.bachi.componentdb.business.model.Distributor</class>
+        <class>net.bachi.componentdb.business.model.Manufacturer</class>
         <class>net.bachi.componentdb.business.model.PartNumber</class>
         <class>net.bachi.componentdb.business.model.Price</class>
         <properties>

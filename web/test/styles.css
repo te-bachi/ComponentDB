@@ -180,6 +180,37 @@ tfoot, thead, tr, th, td {
 }
 
 /******************************************************************************
+ * Submenu
+ *****************************************************************************/
+
+#admin {
+}
+
+#admin-menu {
+    background-color: #056e00;
+    float: left;
+}
+#admin-menu ul {
+    background-color: #a5e79c;
+    list-style: none outside none;
+    display: block;
+    padding-left: 20px;
+    margin: 0;
+}
+
+#admin-menu ul li {
+
+}
+
+#admin-content {
+    background-color: #a5e79c;
+}
+
+#admin-clear {
+    clear: left;
+}
+
+/******************************************************************************
  * Content
  *****************************************************************************/
 
