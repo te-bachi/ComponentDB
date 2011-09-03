@@ -33,6 +33,5 @@ public abstract class DAOFactory {
     public abstract CountryDAO getCountryDAO();
     public abstract CurrencyDAO getCurrencyDAO();
     public abstract DistributorDAO getDistributorDAO();
-    public abstract PartNumberDAO getPartNumberDAO();
     public abstract PriceDAO getPriceDAO();
 }

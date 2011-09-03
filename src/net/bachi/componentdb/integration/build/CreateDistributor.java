@@ -1,4 +1,4 @@
-package net.bachi.componentdb.presentation.test;
+package net.bachi.componentdb.integration.build;
 
 import net.bachi.componentdb.business.model.Country;
 import net.bachi.componentdb.business.model.Currency;
@@ -14,17 +14,35 @@ import java.util.List;
 /**
  * @author Andreas Bachmann
  */
-public class CreateDistributor {
-    public static void main(String[] args) {
-        CurrencyDAO    currencyDAO    = DAOFactory.getInstance().getCurrencyDAO();
-        CountryDAO     countryDAO     = DAOFactory.getInstance().getCountryDAO();
-        DistributorDAO distributorDAO = DAOFactory.getInstance().getDistributorDAO();
+public class CreateDistributor implements Creatable {
+    private CurrencyDAO    currencyDAO;
+    private CountryDAO     countryDAO;
+    private DistributorDAO distributorDAO;
 
-        List<Distributor> distributors = distributorDAO.findAll();
+    public CreateDistributor() {
+        currencyDAO    = DAOFactory.getInstance().getCurrencyDAO();
+        countryDAO     = DAOFactory.getInstance().getCountryDAO();
+        distributorDAO = DAOFactory.getInstance().getDistributorDAO();
+    }
 
-        if (distributors.size() > 0) {
+    public void tryCreate() {
+        if (isEmpty() == false) {
             System.out.println("Data found! Can't reload data...");
         } else {
+            System.out.println("Create distributors...");
+            create();
+        }
+    }
+
+    public boolean isEmpty() {
+        List<Distributor> distributors = distributorDAO.findAll();
+        if (distributors.size() > 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public void create() {
             Currency chf = new Currency("CHF", new BigDecimal("1.00"));
             Currency eur = new Currency("EUR", new BigDecimal("1.13"));
 
@@ -43,6 +61,7 @@ public class CreateDistributor {
             Distributor reichelt = new Distributor(de, "Reichelt", new byte[32], true);
             Distributor conradCh = new Distributor(ch, "Conrad CH", new byte[32], true);
             Distributor conradD = new Distributor(de, "Conrad D", new byte[32], true);
+            Distributor unknown = new Distributor(ch, "Unbekannt", new byte[32], true);
 
             distributorDAO.save(distrelec);
             distributorDAO.save(farnellCh);
@@ -50,7 +69,10 @@ public class CreateDistributor {
             distributorDAO.save(reichelt);
             distributorDAO.save(conradCh);
             distributorDAO.save(conradD);
-        }
-        
+            distributorDAO.save(unknown);
+    }
+
+    public static void main(String[] args) {
+        new CreateDistributor().tryCreate();
     }
 }

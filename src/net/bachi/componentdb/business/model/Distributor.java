@@ -120,13 +120,13 @@ public class Distributor implements Serializable {
     }
 
     @OneToMany(mappedBy = "distributor")
-    private List<PartNumber> partNumbers;
+    private List<Component> components;
 
-    public List<PartNumber> getPartNumbers() {
-        return partNumbers;
+    public List<Component> getPartNumbers() {
+        return components;
     }
 
-    public void setPartNumbers(List<PartNumber> partNumbers) {
-        this.partNumbers = partNumbers;
+    public void setPartNumbers(List<Component> components) {
+        this.components = components;
     }
 }

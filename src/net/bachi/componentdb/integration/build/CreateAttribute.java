@@ -1,4 +1,4 @@
-package net.bachi.componentdb.presentation.test;
+package net.bachi.componentdb.integration.build;
 
 import net.bachi.componentdb.business.model.Attribute;
 import net.bachi.componentdb.business.model.AttributeGroup;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author Andreas Bachmann
  */
-public class CreateAttribute {
+public class CreateAttribute implements Creatable {
 
     private AttributeDAO attributeDAO;
     private AttributeValueDAO attributeValueDAO;
@@ -28,18 +28,31 @@ public class CreateAttribute {
         attributeDAO = DAOFactory.getInstance().getAttributeDAO();
         attributeValueDAO = DAOFactory.getInstance().getAttributeValueDAO();
         attributeGroupDAO = DAOFactory.getInstance().getAttributeGroupDAO();
+    }
 
-        List<Attribute> attributes = attributeDAO.findAll();
-        if (attributes.size() > 0) {
+    public void tryCreate() {
+        if (isEmpty() == false) {
             System.out.println("Data found! Can't reload data...");
         } else {
-            createLogikgatterAttributes();
-            createLogikgatterGroup();
-
-            createKondensatorAttributes();
-            createKondensatorGroup();
+            System.out.println("Create attributes...");
+            create();
         }
+    }
 
+    public boolean isEmpty() {
+        List<Attribute> attributes = attributeDAO.findAll();
+        if (attributes.size() > 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public void create() {
+        createLogikgatterAttributes();
+        createLogikgatterGroup();
+
+        createKondensatorAttributes();
+        createKondensatorGroup();
     }
 
     private Attribute logikgatterGehäuse;
@@ -72,7 +85,7 @@ public class CreateAttribute {
     }
 
     private void createLogikgatterGehäuse() {
-        logikgatterGehäuse = new Attribute("Gehäuse");
+        logikgatterGehäuse = new Attribute("IC Gehäuse");
         attributeDAO.save(logikgatterGehäuse);
 
         attributeValueDAO.save(new AttributeValue(logikgatterGehäuse, "BGA"));
@@ -137,6 +150,11 @@ public class CreateAttribute {
         logikgatterAnzahlPins = new Attribute("Anzahl Pins");
         attributeDAO.save(logikgatterAnzahlPins);
 
+        attributeValueDAO.save(new AttributeValue(logikgatterAnzahlPins, "1"));
+        attributeValueDAO.save(new AttributeValue(logikgatterAnzahlPins, "2"));
+        attributeValueDAO.save(new AttributeValue(logikgatterAnzahlPins, "3"));
+        attributeValueDAO.save(new AttributeValue(logikgatterAnzahlPins, "4"));
+        attributeValueDAO.save(new AttributeValue(logikgatterAnzahlPins, "5"));
         attributeValueDAO.save(new AttributeValue(logikgatterAnzahlPins, "6"));
         attributeValueDAO.save(new AttributeValue(logikgatterAnzahlPins, "8"));
         attributeValueDAO.save(new AttributeValue(logikgatterAnzahlPins, "10"));
@@ -274,6 +292,36 @@ public class CreateAttribute {
 
     private void createKondensatorDurchmesser() {
         kondensatorDurchmesser = new Attribute("Durchmesser");
+        attributeDAO.save(kondensatorDurchmesser);
+
+        attributeValueDAO.save(new AttributeValue(kondensatorDurchmesser, "4mm"));
+        attributeValueDAO.save(new AttributeValue(kondensatorDurchmesser, "5mm"));
+        attributeValueDAO.save(new AttributeValue(kondensatorDurchmesser, "6mm"));
+        attributeValueDAO.save(new AttributeValue(kondensatorDurchmesser, "6.3mm"));
+        attributeValueDAO.save(new AttributeValue(kondensatorDurchmesser, "8mm"));
+        attributeValueDAO.save(new AttributeValue(kondensatorDurchmesser, "10mm"));
+        attributeValueDAO.save(new AttributeValue(kondensatorDurchmesser, "12.5mm"));
+        attributeValueDAO.save(new AttributeValue(kondensatorDurchmesser, "13mm"));
+        attributeValueDAO.save(new AttributeValue(kondensatorDurchmesser, "16mm"));
+    }
+
+    private Attribute quarzFrequenz;
+    private Attribute quarzGehäuse;
+    private Attribute quarzBetriebstemperatur;
+
+    private void createQuarzGroup() {
+        List<Attribute> attributes = new ArrayList<Attribute>();
+        attributes.add(quarzFrequenz);
+        attributes.add(quarzGehäuse);
+        attributes.add(logikgatterAnzahlPins);
+        attributes.add(kondensatorMontage);
+        attributes.add(quarzBetriebstemperatur);
+
+        AttributeGroup logikgatterGroup = new AttributeGroup("Quarz", attributes);
+        attributeGroupDAO.save(logikgatterGroup);
+    }
+    private void createQuarzFrequenz() {
+        kondensatorDurchmesser = new Attribute("Frequenz");
         attributeDAO.save(kondensatorDurchmesser);
 
         attributeValueDAO.save(new AttributeValue(kondensatorDurchmesser, "4mm"));

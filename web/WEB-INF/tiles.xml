@@ -46,6 +46,7 @@
     <!-- .......... Search -> Category Layout ............................. -->
     <definition name="tiles.layout.search.category" extends="tiles.layout.root">
         <put-attribute name="category"      value="/category.jsp" />
+        <put-attribute name="result"        value="/result.jsp" />
     </definition>
 
     <!-- .......... Search -> Filter Layout ............................... -->

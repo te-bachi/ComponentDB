@@ -11,7 +11,6 @@ import net.bachi.componentdb.integration.CurrencyDAO;
 import net.bachi.componentdb.integration.DAOFactory;
 import net.bachi.componentdb.integration.DistributorDAO;
 import net.bachi.componentdb.integration.ManufacturerDAO;
-import net.bachi.componentdb.integration.PartNumberDAO;
 import net.bachi.componentdb.integration.PriceDAO;
 
 /**
@@ -75,11 +74,6 @@ public class HibernateDAOFactory extends DAOFactory {
     @Override
     public DistributorDAO getDistributorDAO() {
         return (DistributorDAO) instantiateDAO(DistributorDAOHibernate.class);
-    }
-
-    @Override
-    public PartNumberDAO getPartNumberDAO() {
-        return (PartNumberDAO) instantiateDAO(PartNumberDAOHibernate.class);
     }
 
     @Override

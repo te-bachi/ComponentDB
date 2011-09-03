@@ -9,7 +9,12 @@
 </s:form>
 
 
-<s:iterator value="componentList" var="component">
-    <s:property value="name" />
-    <s:property value="manufacturer.name" />
+<br/>
+<br/>
+<s:iterator value="categories" var="category">
+    <div>
+        <s:property value="key.name" /> - "<s:property value="value.size" />"
+    </div>
 </s:iterator>
+
+    

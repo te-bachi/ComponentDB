@@ -1,9 +1,7 @@
 package net.bachi.componentdb.presentation.test;
 
-import net.bachi.componentdb.business.model.Attribute;
 import net.bachi.componentdb.business.model.AttributeValue;
 import net.bachi.componentdb.business.model.Component;
-import net.bachi.componentdb.business.model.PartNumber;
 import net.bachi.componentdb.business.model.Price;
 import net.bachi.componentdb.integration.ComponentDAO;
 import net.bachi.componentdb.integration.DAOFactory;
@@ -32,6 +30,7 @@ public class SelectComponent {
             }
             System.out.println();
             System.out.println("- Price -");
+            /*
             for (PartNumber partNumber : component.getPartNumbers()) {
                 String currency = partNumber.getDistributor().getCountry().getCurrency().getName();
                 System.out.println(partNumber.getPartNumber() + " (" + partNumber.getDistributor().getName() + ")");
@@ -40,6 +39,7 @@ public class SelectComponent {
                 }
                 System.out.println("");
             }
+            */
         }
     }
 }

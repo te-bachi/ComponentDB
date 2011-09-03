@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.List;
 
@@ -86,6 +87,22 @@ public class Category implements Serializable {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "{ " + id + ", " + name + " }";
+    }
+
+    @Transient
+    int componentCount;
+
+    public int getComponentCount() {
+        return componentCount;
+    }
+
+    public void setComponentCount(int componentCount) {
+        this.componentCount = componentCount;
+    }
+
     @ManyToOne
     @JoinColumn(name = "parent_id", referencedColumnName = "id")
     private Category parentCategory;
@@ -98,18 +115,6 @@ public class Category implements Serializable {
         this.parentCategory = parentCategory;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "group_id", referencedColumnName = "id")
-    private AttributeGroup attributeGroup;
-
-    public AttributeGroup getAttributeGroup() {
-        return attributeGroup;
-    }
-
-    public void setAttributeGroup(AttributeGroup attributeGroup) {
-        this.attributeGroup = attributeGroup;
-    }
-
     @OneToMany(mappedBy = "parentCategory")
     private List<Category> childCategories;
 
@@ -119,6 +124,18 @@ public class Category implements Serializable {
 
     public void setChildCategories(List<Category> childCategories) {
         this.childCategories = childCategories;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "attribute_group_id", referencedColumnName = "id")
+    private AttributeGroup attributeGroup;
+
+    public AttributeGroup getAttributeGroup() {
+        return attributeGroup;
+    }
+
+    public void setAttributeGroup(AttributeGroup attributeGroup) {
+        this.attributeGroup = attributeGroup;
     }
 
     @OneToMany(mappedBy = "category")

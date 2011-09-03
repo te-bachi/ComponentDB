@@ -11,7 +11,7 @@ public class ColumnTranslation {
 
     static {
         translationMap = new HashMap<String, String>();
-        translationMap.put("bestellNr",    "p.partNumber");
+        translationMap.put("bestellNr",    "c.partNumber");
         translationMap.put("name",         "c.name");
         translationMap.put("beschreibung", "c.description");
         translationMap.put("hersteller",   "m.name");

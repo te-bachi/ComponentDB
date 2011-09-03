@@ -24,9 +24,9 @@ public class Price implements Serializable {
 
     }
 
-    public Price(PartNumber partNumber, short quantity, BigDecimal price) {
+    public Price(Component component, short quantity, BigDecimal price) {
         this.price = price;
-        this.partNumber = partNumber;
+        this.component = component;
         this.quantity = quantity;
     }
 
@@ -91,14 +91,14 @@ public class Price implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "part_number_id", referencedColumnName = "id", nullable = false)
-    private PartNumber partNumber;
+    @JoinColumn(name = "component_id", referencedColumnName = "id", nullable = false)
+    private Component component;
 
-    public PartNumber getPartNumber() {
-        return partNumber;
+    public Component getPartNumber() {
+        return component;
     }
 
-    public void setPartNumber(PartNumber partNumber) {
-        this.partNumber = partNumber;
+    public void setPartNumber(Component component) {
+        this.component = component;
     }
 }

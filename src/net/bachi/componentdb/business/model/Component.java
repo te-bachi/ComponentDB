@@ -27,20 +27,21 @@ public class Component implements Serializable {
 
     }
 
-    public Component(Category category, Manufacturer manufacturer, String name, String description, String place, short quantity) {
-        this(category, manufacturer, name, description, place, quantity, null, null, null);
+    public Component(Category category, Manufacturer manufacturer, Distributor distributor, String partNumber, String name, String description, String place, short quantity) {
+        this(category, manufacturer, distributor, partNumber, name, description, place, quantity, null, null);
     }
 
-    public Component(Category category, Manufacturer manufacturer, String name, String description, String place, short quantity, List<AttributeValue> attributeValues, List<Attachment> attachments, List<PartNumber> partNumbers) {
+    public Component(Category category, Manufacturer manufacturer, Distributor distributor, String partNumber, String name, String description, String place, short quantity, List<AttributeValue> attributeValues, List<Attachment> attachments) {
         this.category = category;
         this.manufacturer = manufacturer;
+        this.distributor = distributor;
+        this.partNumber = partNumber;
         this.name = name;
         this.description = description;
         this.place = place;
         this.quantity = quantity;
         this.attributeValues = attributeValues;
         this.attachments = attachments;
-        this.partNumbers = partNumbers;
     }
 
     @Id
@@ -55,6 +56,18 @@ public class Component implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "part_number")
+    private String partNumber;
+
+    public String getPartNumber() {
+        return partNumber;
+    }
+
+    public void setPartNumber(String partNumber) {
+        this.partNumber = partNumber;
     }
 
     @Basic
@@ -110,12 +123,15 @@ public class Component implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Component that = (Component) o;
+        Component component = (Component) o;
 
-        if (id != that.id) return false;
-        if (quantity != that.quantity) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (place != null ? !place.equals(that.place) : that.place != null) return false;
+        if (id != component.id) return false;
+        if (quantity != component.quantity) return false;
+        if (description != null ? !description.equals(component.description) : component.description != null)
+            return false;
+        if (name != null ? !name.equals(component.name) : component.name != null) return false;
+        if (partNumber != null ? !partNumber.equals(component.partNumber) : component.partNumber != null) return false;
+        if (place != null ? !place.equals(component.place) : component.place != null) return false;
 
         return true;
     }
@@ -123,10 +139,40 @@ public class Component implements Serializable {
     @Override
     public int hashCode() {
         int result = id;
+        result = 31 * result + (partNumber != null ? partNumber.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (place != null ? place.hashCode() : 0);
         result = 31 * result + (int) quantity;
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "{ " + id + ", " + name + ", " + category.getName() + " }";
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "distributor_id", referencedColumnName = "id", nullable = false)
+    private Distributor distributor;
+
+    public Distributor getDistributor() {
+        return distributor;
+    }
+
+    public void setDistributor(Distributor distributor) {
+        this.distributor = distributor;
+    }
+
+    @OneToMany(mappedBy = "component")
+    private List<Price> prices;
+
+    public List<Price> getPrices() {
+        return prices;
+    }
+
+    public void setPrices(List<Price> prices) {
+        this.prices = prices;
     }
 
     @ManyToOne
@@ -183,16 +229,5 @@ public class Component implements Serializable {
 
     public void setAttachments(List<Attachment> attachments) {
         this.attachments = attachments;
-    }
-
-    @OneToMany(mappedBy = "component")
-    private List<PartNumber> partNumbers;
-
-    public List<PartNumber> getPartNumbers() {
-        return partNumbers;
-    }
-
-    public void setPartNumbers(List<PartNumber> partNumbers) {
-        this.partNumbers = partNumbers;
     }
 }

@@ -1,9 +1,6 @@
 package net.bachi.componentdb.presentation.test;
 
-import net.bachi.componentdb.business.model.AttributeValue;
 import net.bachi.componentdb.business.model.Component;
-import net.bachi.componentdb.business.model.PartNumber;
-import net.bachi.componentdb.business.model.Price;
 import net.bachi.componentdb.integration.ComponentDAO;
 import net.bachi.componentdb.integration.DAOFactory;
 

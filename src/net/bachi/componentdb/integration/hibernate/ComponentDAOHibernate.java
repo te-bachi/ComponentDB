@@ -17,9 +17,8 @@ public class ComponentDAOHibernate extends GenericDAOHibernate<Component, Intege
 
     private static final String sqlPrefix = "SELECT DISTINCT c                   " +
                                             "  FROM Component c                  " +
-                                            "  JOIN c.partNumbers p              " +
                                             "  JOIN c.manufacturer m             " +
-                                            "  JOIN c.attributeValues v          " +
+                                            "  LEFT JOIN c.attributeValues v     " +
                                             " WHERE 1 = 2                        ";
 
     @SuppressWarnings("unchecked")
@@ -51,7 +50,7 @@ public class ComponentDAOHibernate extends GenericDAOHibernate<Component, Intege
                 pass = true;
                 sqlQuery.append(" OR ");
                 sqlQuery.append(ColumnTranslation.translate(key));
-                sqlQuery.append(" = :searchString");
+                sqlQuery.append(sqlPart);
             }
         }
 
